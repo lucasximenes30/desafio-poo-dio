@@ -1,5 +1,6 @@
 package br.com.dio.desafio.dominio;
 
+import java.time.LocalDate;
 import java.util.*;
 
 public class Dev {
@@ -31,6 +32,20 @@ public class Dev {
         }
         return soma;
     }
+    public Certificado gerarCertificado(Bootcamp bootcamp) {
+        if (this.conteudosConcluidos.containsAll(bootcamp.getConteudos())) {
+            return new Certificado(
+                    this.nome,
+                    bootcamp.getNome(),
+                    LocalDate.now(),
+                    this.calcularTotalXp()
+            );
+        } else {
+            System.err.println("Você ainda não concluiu todos os conteúdos do bootcamp.");
+            return null;
+        }
+    }
+
 
 
     public String getNome() {
